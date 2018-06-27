@@ -1,0 +1,41 @@
+<!-- 
+	Arquivo HTML para testes e aprendizado de JS
+-->
+<h3>Dados para exibição</h3>
+<!-- Variáveis -->
+<script>
+var Tanque = 40;
+var CaminhoComGasolina = 480;
+var CaminhoComAlcool = 300;
+var ValorGasolina = 5.00;
+var ValorAlcool = 4.40;
+var ano = 2018;
+</script>
+<!-- functions -->
+<script>
+var PularLinha = function() {
+	document.write("<br>")
+	}
+var Linha = function (){
+	document.write("<hr>")
+	}	
+</script>
+<!-- calculos -->
+<script>
+var ConsumoGasolina = CaminhoComGasolina / Tanque;
+var ConsumoAlcool = CaminhoComAlcool / Tanque; 
+</script>
+<!-- apresentação -->
+<script>
+document.write("Meu carro faz " + ConsumoGasolina + " Km por litro de gasolina, com alcool faz "+ConsumoAlcool+ " Km")
+document.write("<br>Valor da gasolina hoje: R$" + ValorGasolina.toFixed(2))
+document.write("<br>Valor do alcool hoje: R$" +ValorAlcool.toFixed(2))
+document.write("<br>Gastaria hoje R$"+ValorGasolina*Tanque+" para encher de gasolina ou R$"+ValorAlcool*Tanque+" no alcool")
+PularLinha () + Linha ()
+document.write("Eu nasci em : " + (ano - 25))
+PularLinha ();
+document.write("Adriano nasceu em : " + (ano - 26))
+PularLinha ();
+document.write("Paulo nasceu em : " + (ano - 32))
+PularLinha () + Linha();
+</script>
