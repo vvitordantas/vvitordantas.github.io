@@ -1,8 +1,16 @@
 <h2><center>Calculando IMC<br><br></center></h2>
 <script>
+var calculaIMC = function(altura, peso) {
+
+        var imc = peso / (altura * altura);
+        document.write("Seu IMC: "+imc.toFixed(0));
+};
+</script>
+
+<script>
 var Nome = prompt("Qual o seu nome?");
-var Peso = prompt("Quanto pesa?");
-var Altura = prompt ("E qual a sua altura?");
-var imc = Peso /(Altura*Altura);
-document.write("Nome: "+Nome+"<br>Peso: "+Peso+"<br> Altura: "+Altura+"<br><br> Seu IMC: "+imc.toFixed(0));
+var MeuPeso = prompt("Quanto pesa em Kg?");
+var MinhaAltura = prompt ("E qual a sua alturaem Metros?");
+document.write("Nome: "+Nome+"<br>Peso: "+MeuPeso+"Kg<br> Altura: "+MinhaAltura+"m<br><br>");
+calculaIMC(MinhaAltura, MeuPeso);
 </script>
