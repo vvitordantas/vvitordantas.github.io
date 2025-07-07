@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Redirecionando...</title>
+  <script type="text/javascript">
+    const path = window.location.pathname;
+    
+    // Constrói a URL para a página principal, passando o caminho como um parâmetro de busca.
+    // O session storage é usado para que o redirecionamento aconteça apenas uma vez.
+    const redirect = sessionStorage.redirect;
+    delete sessionStorage.redirect;
+    if (redirect && redirect == path) {
+        // Se já tentamos redirecionar para este path, evitamos um loop infinito.
+        window.location.replace('/');
+    } else {
+        sessionStorage.redirect = path;
+        // Redireciona para index.html?path=SEU_APELIDO
+        window.location.replace('/?path=' + path.substring(1));
+    }
+  </script>
+</head>
+<body>
+</body>
+</html>
