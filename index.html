@@ -7,6 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
+    <script src="redirects.js"></script>
+
     <style>
         body {
             background-color: black;
@@ -49,12 +52,8 @@
         }
 
         @keyframes rotateLetters {
-            0% {
-                transform: rotateY(0deg);
-            }
-            100% {
-                transform: rotateY(360deg);
-            }
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
         }
 
         .vitor-dantas {
@@ -66,6 +65,26 @@
             letter-spacing: 2px;
             text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
             font-family: 'Merriweather', serif;
+        }
+
+        /* Estilos para a mensagem de erro */
+        .error-container {
+            text-align: center;
+        }
+        .error-container h1 {
+            font-size: 2.5em;
+        }
+        .error-container p {
+            font-size: 1.2em;
+        }
+        .error-container code {
+            background-color: #333;
+            padding: 0.2em 0.4em;
+            border-radius: 4px;
+        }
+        .error-container a {
+            color: #58a6ff;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -79,7 +98,40 @@
     </div>
     <audio autoplay loop>
         <source src="fundo.mp3" type="audio/mpeg">
-        Seu navegador não suporta o elemento de áudio.
     </audio>
+
+    <script>
+        (function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const redirectPath = urlParams.get('path');
+
+            if (redirectPath) {
+                // Se um apelido foi encontrado na URL...
+                if (links[redirectPath]) {
+                    // E se o apelido EXISTE no nosso redirects.js, redireciona o usuário.
+                    window.location.replace(links[redirectPath]);
+                } else {
+                    // Se o apelido NÃO EXISTE, mostra uma mensagem de erro.
+                    const logo = document.querySelector('.logo-container');
+                    const audio = document.querySelector('audio');
+                    
+                    // Esconde o logo e para a música
+                    if(logo) logo.style.display = 'none';
+                    if(audio) audio.pause();
+
+                    // Cria e mostra a mensagem de erro
+                    const errorDiv = document.createElement('div');
+                    errorDiv.className = 'error-container';
+                    errorDiv.innerHTML = `
+                        <h1>Link não encontrado 😕</h1>
+                        <p>O apelido <code>${redirectPath}</code> não foi encontrado.</p>
+                        <p><a href="/">Voltar para a página inicial</a></p>
+                    `;
+                    document.body.appendChild(errorDiv);
+                }
+            }
+            // Se nenhum apelido for encontrado na URL, a página de logo é exibida normalmente.
+        })();
+    </script>
 </body>
 </html>
